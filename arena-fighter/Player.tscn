@@ -11,7 +11,7 @@ rings = 6
 radius = 3.5664063
 height = 9.464966
 
-[node name="Node3D" type="CharacterBody3D" unique_id=1665172743]
+[node name="Node3D" type="CharacterBody3D" unique_id=1665172743 groups=["player"]]
 axis_lock_linear_z = true
 script = ExtResource("1_xhfnw")
 

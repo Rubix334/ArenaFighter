@@ -1,15 +1,16 @@
-extends CSGBox3D
-
+extends Camera3D
 @onready var player: Player = $"../Node3D"
+
+var default_fov = 58
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	use_collision = false
+	fov = default_fov
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if (player.position.y-6) > position.y:
-		use_collision = true
+	if abs(player.global_position.x) > 50:
+		fov = default_fov + (abs(player.global_position.x)/3.5)
 	else:
-		use_collision = false
+		fov = default_fov
