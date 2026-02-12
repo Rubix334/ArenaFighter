@@ -49,5 +49,5 @@ transform = Transform3D(1, 0, 0, 0, 0.99896264, 0.045537338, 0, -0.045537338, 0.
 fov = 57.8
 script = ExtResource("3_uj4qe")
 
-[node name="Node3D" parent="." unique_id=1040186144 instance=ExtResource("1_bcb0y")]
+[node name="player1" parent="." unique_id=1040186144 instance=ExtResource("1_bcb0y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.803225, 10.453566, 0)

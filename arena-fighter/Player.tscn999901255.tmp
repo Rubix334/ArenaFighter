@@ -51,9 +51,6 @@ _data = {
 &"twinkle": SubResource("Animation_kne1u")
 }
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_xhfnw"]
-size = Vector3(8.19062, 8.737061, 1)
-
 [node name="Node3D" type="CharacterBody3D" unique_id=1665172743 groups=["player"]]
 axis_lock_linear_z = true
 script = ExtResource("1_xhfnw")
@@ -67,12 +64,3 @@ shape = SubResource("CapsuleShape3D_xhfnw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=626276899]
 libraries/ = SubResource("AnimationLibrary_e80uo")
-
-[node name="Attackzone" type="Area3D" parent="." unique_id=549571054]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.606594, 0, 0)
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Attackzone" unique_id=1646105636]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.46129417, -0.21374512, 0)
-shape = SubResource("BoxShape3D_xhfnw")
-
-[node name="Timer" type="Timer" parent="." unique_id=1843577862]

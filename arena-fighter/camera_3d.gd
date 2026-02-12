@@ -1,5 +1,5 @@
 extends Camera3D
-@onready var player: Player = $"../Node3D"
+@onready var player1: Player = $"../player1"
 
 var default_fov = 58
 
@@ -10,7 +10,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if abs(player.global_position.x) > 50:
-		fov = default_fov + (abs(player.global_position.x)/3.5)
+	if abs(player1.global_position.x) > 50:
+		fov = default_fov + (abs(player1.global_position.x)/3.5)
 	else:
 		fov = default_fov
