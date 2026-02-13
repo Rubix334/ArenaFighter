@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bmpe6qeqcedsx"]
 
-[ext_resource type="Script" uid="uid://cme6neniwxj2v" path="res://player.gd" id="1_xhfnw"]
+[ext_resource type="Script" uid="uid://cme6neniwxj2v" path="res://Players/player.gd" id="1_xhfnw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xhfnw"]
 

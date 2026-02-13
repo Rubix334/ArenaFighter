@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PlayerControls" format=3 uid="uid://d0ex2joweuv84"]
+
+[ext_resource type="Script" uid="uid://dtrew3fdnsfek" path="res://Players/PlayerControls.gd" id="1_xynfh"]
+
+[resource]
+script = ExtResource("1_xynfh")
+player_index = 1
+move_left = "P2Left"
+move_right = "P2Right"
+jump = "P2Up"
+down = "P2Down"
+attack = "P2Attack"

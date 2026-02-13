@@ -1,37 +1,43 @@
 extends CharacterBody3D
 class_name Player
+
+@export var controls: Resource = null
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var attackzone: Area3D = $Attackzone
 @onready var timer: Timer = $Timer
 
+@export var health := 100
+
+signal attack
 
 const SPEED = 35
 const JUMP_VELOCITY = 20
 
 var has_doubleJump = false
+var holdTime := 0.0
 
-
-func _physics_process(delta: float) -> void:
+func _physics_process(delta: float) -> void:	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		##quick down movement (add sound later)
 		if velocity.y < 3 and velocity.y > -3:
 			animation_player.play("twinkle")
-			if Input.is_action_just_pressed("P1Down"):
-				velocity += get_gravity() * 3
+			if Input.is_action_just_pressed(controls.down):
+				velocity += get_gravity() * 3.5
 
 	# Handle jump.
-	if Input.is_action_just_pressed("P1Up") and is_on_floor():
+	if Input.is_action_just_pressed(controls.jump) and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		has_doubleJump = false
-	elif Input.is_action_just_pressed("P1Up") and not has_doubleJump:
+	elif Input.is_action_just_pressed(controls.jump) and not has_doubleJump:
 		velocity.y = JUMP_VELOCITY-5
 		has_doubleJump = true
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector("P1Left", "P1Right", "ui_up", "ui_down")
+	var input_dir := Input.get_vector(controls.move_left, controls.move_right, "ui_up", "ui_down")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		velocity.x = direction.x * SPEED
@@ -50,11 +56,14 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	# attack logic
-	var holdTime := 0.0
-	if Input.is_action_pressed("P1Attack"):
-		holdTime += delta
-	if Input.is_action_just_released("P1Attack"):
+	if Input.is_action_pressed(controls.attack):
+		print(holdTime)
+		if holdTime < 10:
+			holdTime += (delta*2)
+		else:
+			holdTime = 10
+	if Input.is_action_just_released(controls.attack):
 		var damage = 5 + holdTime
+		holdTime = 0.0
 		print("damage dealt: " + str(damage))
 	
-	print(holdTime)

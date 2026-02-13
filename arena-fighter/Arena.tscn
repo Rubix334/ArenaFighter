@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://y451h0bmf8ut"]
 
-[ext_resource type="PackedScene" uid="uid://bmpe6qeqcedsx" path="res://Player.tscn" id="1_bcb0y"]
 [ext_resource type="Script" uid="uid://b8mr2pvudetjs" path="res://platform.gd" id="1_u45fm"]
 [ext_resource type="Script" uid="uid://qugt8dp5hvmx" path="res://arena.gd" id="1_vbyki"]
 [ext_resource type="Script" uid="uid://dy2my03f0d6g6" path="res://camera_3d.gd" id="3_uj4qe"]
+[ext_resource type="Script" uid="uid://cme6neniwxj2v" path="res://Players/player.gd" id="4_ml6qp"]
+[ext_resource type="Resource" uid="uid://hy4cgj86v4d4" path="res://Players/Player1_controls.tres" id="5_ml6qp"]
+[ext_resource type="Script" uid="uid://dtrew3fdnsfek" path="res://Players/PlayerControls.gd" id="6_8qske"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iqv8f"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -17,6 +19,66 @@ background_mode = 2
 sky = SubResource("Sky_bcb0y")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xhfnw"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0rwas"]
+material = SubResource("StandardMaterial3D_xhfnw")
+radius = 3.0
+height = 9.0
+rings = 6
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xhfnw"]
+radius = 3.5664063
+height = 9.464966
+
+[sub_resource type="Animation" id="Animation_kpjcp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:mesh:material:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_kne1u"]
+resource_name = "twinkle"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:mesh:material:albedo_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.9999992, 0.98695606, 0.56965125, 1), Color(1, 0.9882353, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e80uo"]
+_data = {
+&"RESET": SubResource("Animation_kpjcp"),
+&"twinkle": SubResource("Animation_kne1u")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xhfnw"]
+size = Vector3(8.19062, 8.737061, 1)
+
+[sub_resource type="Resource" id="Resource_tu31c"]
+script = ExtResource("6_8qske")
+player_index = 1
+move_left = "P2Left"
+move_right = "P2Right"
+jump = "P2Up"
+attack = "P2Attack"
 
 [node name="Node3D" type="Node3D" unique_id=354631926]
 script = ExtResource("1_vbyki")
@@ -49,5 +111,52 @@ transform = Transform3D(1, 0, 0, 0, 0.99896264, 0.045537338, 0, -0.045537338, 0.
 fov = 57.8
 script = ExtResource("3_uj4qe")
 
-[node name="player1" parent="." unique_id=1040186144 instance=ExtResource("1_bcb0y")]
+[node name="Player1" type="CharacterBody3D" parent="." unique_id=1040186144 groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.803225, 10.453566, 0)
+axis_lock_linear_z = true
+script = ExtResource("4_ml6qp")
+controls = ExtResource("5_ml6qp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player1" unique_id=474961556]
+mesh = SubResource("CapsuleMesh_0rwas")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player1" unique_id=1403559715]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06390381, 0)
+shape = SubResource("CapsuleShape3D_xhfnw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player1" unique_id=626276899]
+libraries/ = SubResource("AnimationLibrary_e80uo")
+
+[node name="Attackzone" type="Area3D" parent="Player1" unique_id=549571054]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.606594, 0, 0)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Player1/Attackzone" unique_id=1646105636]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.46129417, -0.21374512, 0)
+shape = SubResource("BoxShape3D_xhfnw")
+
+[node name="Timer" type="Timer" parent="Player1" unique_id=1843577862]
+
+[node name="Player2" type="CharacterBody3D" parent="." unique_id=1665172743 groups=["player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.207645, 9.708937, 0)
+axis_lock_linear_z = true
+script = ExtResource("4_ml6qp")
+controls = SubResource("Resource_tu31c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player2" unique_id=786056182]
+mesh = SubResource("CapsuleMesh_0rwas")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player2" unique_id=373574499]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06390381, 0)
+shape = SubResource("CapsuleShape3D_xhfnw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player2" unique_id=2080574005]
+libraries/ = SubResource("AnimationLibrary_e80uo")
+
+[node name="Attackzone" type="Area3D" parent="Player2" unique_id=2014757274]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.606594, 0, 0)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Player2/Attackzone" unique_id=1580630774]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.46129417, -0.21374512, 0)
+shape = SubResource("BoxShape3D_xhfnw")
+
+[node name="Timer" type="Timer" parent="Player2" unique_id=1674185576]

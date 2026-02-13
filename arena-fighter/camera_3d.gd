@@ -1,5 +1,5 @@
 extends Camera3D
-@onready var player1: Player = $"../player1"
+@onready var player1: Player = $"../Player1"
 
 var default_fov = 58
 

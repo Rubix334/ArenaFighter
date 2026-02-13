@@ -1,5 +1,5 @@
 extends CSGBox3D
-@onready var player1: Player = $"../player1"
+@onready var player1: Player = $"../Player1"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
