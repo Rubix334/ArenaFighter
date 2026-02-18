@@ -64,6 +64,6 @@ func _process(delta: float) -> void:
 			holdTime = 10
 	if Input.is_action_just_released(controls.attack):
 		var damage = 5 + holdTime
+		player_hurt(damage)
 		holdTime = 0.0
 		print(name + " damage dealt: " + str(damage))
-	

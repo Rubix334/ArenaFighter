@@ -54,6 +54,8 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_xhfnw"]
 size = Vector3(8.19062, 8.737061, 1)
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kpjcp"]
+
 [node name="Node3D" type="CharacterBody3D" unique_id=1665172743 groups=["player"]]
 axis_lock_linear_z = true
 script = ExtResource("1_xhfnw")
@@ -63,6 +65,7 @@ mesh = SubResource("CapsuleMesh_0rwas")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1403559715]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06390381, 0)
+visible = false
 shape = SubResource("CapsuleShape3D_xhfnw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=626276899]
@@ -76,3 +79,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.46129417, -0.21374512, 0)
 shape = SubResource("BoxShape3D_xhfnw")
 
 [node name="Timer" type="Timer" parent="." unique_id=1843577862]
+
+[node name="Hurtbox" type="Area3D" parent="." unique_id=1231672447]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=998567962]
+transform = Transform3D(7.151355, 0, 0, 0, -5.1764283, 0, 0, 0, 6.9321837, -0.07261801, 0, 0.06084633)
+shape = SubResource("CapsuleShape3D_kpjcp")
+
+[connection signal="attack" from="." to="." method="_on_attack"]
