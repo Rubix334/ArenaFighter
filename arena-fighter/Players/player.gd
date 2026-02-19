@@ -7,9 +7,9 @@ class_name Player
 @onready var attackzone: Area3D = $Attackzone
 @onready var timer: Timer = $Timer
 
-@export var health := 100
-
+@export var health := 100.0
 signal attack
+
 
 const SPEED = 35
 const JUMP_VELOCITY = 20
@@ -49,13 +49,15 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 	#attack code
+	
 	if direction.x == 1:
-		attackzone.global_position.x = global_position.x + 6.6
+		attackzone.global_position.x = global_position.x + 7
 	elif direction.x == -1:
-		attackzone.global_position.x = global_position.x - 6.6
+		attackzone.global_position.x = global_position.x - 7.9
 
 func _process(delta: float) -> void:
 	# attack logic
+	
 	if Input.is_action_pressed(controls.attack):
 		print(holdTime)
 		if holdTime < 10:
@@ -63,7 +65,11 @@ func _process(delta: float) -> void:
 		else:
 			holdTime = 10
 	if Input.is_action_just_released(controls.attack):
-		var damage = 5 + holdTime
-		player_hurt(damage)
+		deal_damage()
+		attack.emit()
+		print(name + " damage dealt: " + str(deal_damage()))
+		print(name + " Health: " + str(health))
 		holdTime = 0.0
-		print(name + " damage dealt: " + str(damage))
+
+func deal_damage() -> float:
+	return 5 + holdTime

@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cme6neniwxj2v" path="res://Players/player.gd" id="4_ml6qp"]
 [ext_resource type="Resource" uid="uid://hy4cgj86v4d4" path="res://Players/Player1_controls.tres" id="5_ml6qp"]
 [ext_resource type="Script" uid="uid://dtrew3fdnsfek" path="res://Players/PlayerControls.gd" id="6_8qske"]
+[ext_resource type="PackedScene" uid="uid://b06aqu7gmf6sd" path="res://player_damage_manager.tscn" id="7_8qske"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iqv8f"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -70,7 +71,7 @@ _data = {
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xhfnw"]
-size = Vector3(6.082323, 8.737061, 1)
+size = Vector3(8.19062, 8.737061, 1)
 
 [sub_resource type="Resource" id="Resource_tu31c"]
 script = ExtResource("6_8qske")
@@ -119,7 +120,7 @@ transform = Transform3D(1, 0, 0, 0, 0.99896264, 0.045537338, 0, -0.045537338, 0.
 fov = 57.8
 script = ExtResource("3_uj4qe")
 
-[node name="Player1" type="CharacterBody3D" parent="." unique_id=1040186144 groups=["player", "player1"]]
+[node name="Player1" type="CharacterBody3D" parent="." unique_id=1040186144 groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.803225, 10.453566, 0)
 axis_lock_linear_z = true
 script = ExtResource("4_ml6qp")
@@ -137,15 +138,14 @@ libraries/ = SubResource("AnimationLibrary_e80uo")
 
 [node name="Attackzone" type="Area3D" parent="Player1" unique_id=549571054]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.606594, 0, 0)
-collision_mask = 2
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Player1/Attackzone" unique_id=1646105636]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5154428, -0.21374512, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.46129417, -0.21374512, 0)
 shape = SubResource("BoxShape3D_xhfnw")
 
 [node name="Timer" type="Timer" parent="Player1" unique_id=1843577862]
 
-[node name="Player2" type="CharacterBody3D" parent="." unique_id=1665172743 groups=["player", "player2"]]
+[node name="Player2" type="CharacterBody3D" parent="." unique_id=1665172743 groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.207645, 9.708937, 0)
 collision_layer = 2
 collision_mask = 2
@@ -172,5 +172,7 @@ shape = SubResource("BoxShape3D_xhfnw")
 
 [node name="Timer" type="Timer" parent="Player2" unique_id=1674185576]
 
+[node name="damage_manager" parent="." unique_id=1765584365 instance=ExtResource("7_8qske")]
+
 [connection signal="attack" from="Player1" to="." method="_on_player_1_attack"]
-[connection signal="body_entered" from="Player1/Attackzone" to="." method="_on_attackzone_body_entered"]
+[connection signal="body_entered" from="Player2/Attackzone" to="." method="_on_attackzone_body_entered"]

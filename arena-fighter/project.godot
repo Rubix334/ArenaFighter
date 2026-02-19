@@ -22,6 +22,8 @@ PlayerDamageManager="*uid://b12yfydqrcm4l"
 [global_group]
 
 player=""
+player2=""
+player1=""
 
 [input]
 
