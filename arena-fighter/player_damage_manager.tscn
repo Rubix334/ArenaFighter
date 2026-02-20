@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://b06aqu7gmf6sd"]
-
-[ext_resource type="Script" uid="uid://b12yfydqrcm4l" path="res://player_damage_manager.gd" id="1_t4fc0"]
-
-[node name="Node3D" type="Node" unique_id=1765584365]
-script = ExtResource("1_t4fc0")

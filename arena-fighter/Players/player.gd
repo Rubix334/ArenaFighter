@@ -10,7 +10,6 @@ class_name Player
 @export var health := 100.0
 signal attack
 
-
 const SPEED = 35
 const JUMP_VELOCITY = 20
 
