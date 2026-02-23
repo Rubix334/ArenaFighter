@@ -56,6 +56,8 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	# attack logic
+	if health <= 0.0:
+		health = 0.0
 	
 	if Input.is_action_pressed(controls.attack):
 		print(holdTime)

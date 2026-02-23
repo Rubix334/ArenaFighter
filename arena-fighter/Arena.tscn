@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cme6neniwxj2v" path="res://Players/player.gd" id="4_ml6qp"]
 [ext_resource type="Resource" uid="uid://hy4cgj86v4d4" path="res://Players/Player1_controls.tres" id="5_ml6qp"]
 [ext_resource type="Script" uid="uid://dtrew3fdnsfek" path="res://Players/PlayerControls.gd" id="6_8qske"]
+[ext_resource type="PackedScene" uid="uid://dre7kwkstugtp" path="res://hud.tscn" id="7_8qske"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iqv8f"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -194,6 +195,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.46129417, -0.21374512, 0)
 shape = SubResource("BoxShape3D_xhfnw")
 
 [node name="Timer" type="Timer" parent="Player2" unique_id=1674185576]
+
+[node name="HUD" parent="." unique_id=1434276163 instance=ExtResource("7_8qske")]
 
 [connection signal="attack" from="Player1" to="." method="_on_player_1_attack"]
 [connection signal="body_entered" from="Player1/Attackzone" to="." method="_on_attackzone_body_entered"]

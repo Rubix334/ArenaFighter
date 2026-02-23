@@ -11,7 +11,7 @@ func _on_player_1_attack() -> void:
 	var damage = player1.deal_damage()
 	if p2attackable:
 		player2.health -= damage
-		player2.play_animation("took_damage")
+		player2.animation_player.play("took_damage")
 		print(player2.name + " Health Left: "+ str(player2.health))
 
 

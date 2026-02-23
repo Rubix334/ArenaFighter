@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://dre7kwkstugtp"]
+
+[ext_resource type="Script" uid="uid://wv5hmbbddeei" path="res://hud.gd" id="1_64ctp"]
+[ext_resource type="Texture2D" uid="uid://j22d01scnh1f" path="res://icon.svg" id="2_8sq4i"]
+
+[node name="HUD" type="Control" unique_id=1434276163]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_64ctp")
+
+[node name="Player1HUD" type="VBoxContainer" parent="." unique_id=31530137]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Healthbar" type="Control" parent="Player1HUD" unique_id=774475694]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="Back" type="ColorRect" parent="Player1HUD/Healthbar" unique_id=871372610]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 14.0
+offset_right = 503.0
+offset_bottom = 64.0
+color = Color(0.38431373, 0, 0, 1)
+
+[node name="Front" type="ColorRect" parent="Player1HUD/Healthbar" unique_id=1854479232]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 19.0
+offset_right = 503.0
+offset_bottom = 59.0
+color = Color(0.9372549, 0, 0, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Player1HUD" unique_id=1783509466]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="TextureRect" type="TextureRect" parent="Player1HUD/HBoxContainer" unique_id=2416156]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("2_8sq4i")
+
+[node name="TextureRect2" type="TextureRect" parent="Player1HUD/HBoxContainer" unique_id=1995572508]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("2_8sq4i")
+
+[node name="TextureRect3" type="TextureRect" parent="Player1HUD/HBoxContainer" unique_id=733045300]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("2_8sq4i")
+
+[node name="Player2HUD" type="VBoxContainer" parent="." unique_id=814658004]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -505.0
+offset_bottom = 275.0
+grow_horizontal = 0
+
+[node name="Healthbar" type="Control" parent="Player2HUD" unique_id=318093732]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Back" type="ColorRect" parent="Player2HUD/Healthbar" unique_id=1694373111]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 14.0
+offset_right = 503.0
+offset_bottom = 64.0
+color = Color(0.38431373, 0, 0, 1)
+
+[node name="Front" type="ColorRect" parent="Player2HUD/Healthbar" unique_id=1454156999]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 19.0
+offset_right = 503.0
+offset_bottom = 59.0
+color = Color(0.9372549, 0, 0, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Player2HUD" unique_id=1416613741]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="Player2HUD/HBoxContainer" unique_id=1507931901]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("2_8sq4i")
+
+[node name="TextureRect2" type="TextureRect" parent="Player2HUD/HBoxContainer" unique_id=1526307750]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("2_8sq4i")
+
+[node name="TextureRect3" type="TextureRect" parent="Player2HUD/HBoxContainer" unique_id=393081139]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("2_8sq4i")
