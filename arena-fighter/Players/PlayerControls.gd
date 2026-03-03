@@ -7,3 +7,4 @@ extends Resource
 @export var jump := "P1Up"
 @export var down := "P1Down"
 @export var attack := "P1Attack"
+@export var block := "P1Block"

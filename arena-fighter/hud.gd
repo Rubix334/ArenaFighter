@@ -1,11 +1,10 @@
 extends Control
-
 @onready var player_1: Player = $"../Player1"
-@onready var player_2: Player = $"../Player2"
-@onready var player1hud: VBoxContainer = $Player1HUD
-@onready var player2hud: VBoxContainer = $Player2HUD
 
-var healthbar1_pos = player1hud.healthbar.front.global_position
+@onready var player_2: Player = $"../Player2"
+
+@onready var front2: ColorRect = $Player2HUD/Healthbar/Front
+@onready var front1: ColorRect = $Player1HUD/Healthbar/Front
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,5 +12,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	player1hud.healthbar
+	front1.size.x = player_1.health * 5
+	front2.size.x = player_2.health * 5 
 	pass

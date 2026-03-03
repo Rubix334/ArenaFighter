@@ -71,6 +71,17 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_xhfnw"]
 size = Vector3(8.19062, 8.737061, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kpjcp"]
+transparency = 1
+albedo_color = Color(0, 1.0039686, 0.99215955, 0.4862745)
+
+[sub_resource type="SphereMesh" id="SphereMesh_kne1u"]
+material = SubResource("StandardMaterial3D_kpjcp")
+radius = 4.882
+height = 14.31
+radial_segments = 8
+rings = 5
+
 [node name="Node3D" type="CharacterBody3D" unique_id=1665172743 groups=["player"]]
 axis_lock_linear_z = true
 script = ExtResource("1_xhfnw")
@@ -92,6 +103,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.46129417, -0.21374512, 0)
 shape = SubResource("BoxShape3D_xhfnw")
 
 [node name="Timer" type="Timer" parent="." unique_id=1843577862]
+
+[node name="BlockAura" type="MeshInstance3D" parent="." unique_id=1774077001]
+visible = false
+mesh = SubResource("SphereMesh_kne1u")
 
 [connection signal="attack" from="." to="." method="_on_attack"]
 [connection signal="body_entered" from="Attackzone" to="." method="_on_attackzone_body_entered"]

@@ -80,10 +80,11 @@ color = Color(0.38431373, 0, 0, 1)
 
 [node name="Front" type="ColorRect" parent="Player2HUD/Healthbar" unique_id=1454156999]
 layout_mode = 0
-offset_left = 3.0
-offset_top = 19.0
-offset_right = 503.0
-offset_bottom = 59.0
+offset_left = 504.0
+offset_top = 59.0
+offset_right = 1004.0
+offset_bottom = 99.0
+rotation = 3.1415927
 color = Color(0.9372549, 0, 0, 1)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Player2HUD" unique_id=1416613741]

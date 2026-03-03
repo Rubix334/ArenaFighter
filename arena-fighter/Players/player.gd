@@ -6,8 +6,12 @@ class_name Player
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var attackzone: Area3D = $Attackzone
 @onready var timer: Timer = $Timer
+@onready var block_aura: MeshInstance3D = $BlockAura
 
 @export var health := 100.0
+var lives := 3
+var is_blocking = false
+
 signal attack
 
 const SPEED = 35
@@ -16,6 +20,8 @@ const JUMP_VELOCITY = 20
 var has_doubleJump = false
 var holdTime := 0.0
 
+@export var start_pos = null
+var attacktimer = 1
 func _physics_process(delta: float) -> void:	
 	# Add the gravity.
 	if not is_on_floor():
@@ -56,21 +62,43 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	# attack logic
+
 	if health <= 0.0:
-		health = 0.0
+		died()
 	
 	if Input.is_action_pressed(controls.attack):
+	
 		print(holdTime)
 		if holdTime < 10:
 			holdTime += (delta*2)
 		else:
 			holdTime = 10
-	if Input.is_action_just_released(controls.attack):
+	if Input.is_action_just_released(controls.attack) and attacktimer == 1:
 		deal_damage()
 		attack.emit()
+		attacktimer -= 0.1
 		print(name + " damage dealt: " + str(deal_damage()))
 		print(name + " Health: " + str(health))
 		holdTime = 0.0
+	
+	if attacktimer < 1:
+		attacktimer -= 0.02
+		if attacktimer <= 0:
+			attacktimer = 1
+			
+	#blocking
+	if Input.is_action_pressed(controls.block):
+		block_aura.set_visible(true)
+		is_blocking = true
+	else:
+		block_aura.set_visible(false)
+		is_blocking = false
 
 func deal_damage() -> float:
 	return 5 + holdTime
+
+func died() -> void:
+	lives -= 1
+	health = 100
+	
+	global_position = start_pos
