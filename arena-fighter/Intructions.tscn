@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://c5qehjg1bl4vl"]
+
+[ext_resource type="Script" uid="uid://cx5ar8p0fcofr" path="res://intructions.gd" id="1_rve3h"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_i073q"]
+font_size = 60
+
+[sub_resource type="LabelSettings" id="LabelSettings_75cri"]
+font_size = 50
+
+[node name="Control" type="Control" unique_id=1392701018]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rve3h")
+
+[node name="P1Vbox" type="VBoxContainer" parent="." unique_id=1483745442]
+layout_mode = 0
+offset_left = 130.0
+offset_right = 484.0
+offset_bottom = 372.0
+
+[node name="P1" type="Label" parent="P1Vbox" unique_id=497670749]
+layout_mode = 2
+text = "Player One"
+label_settings = SubResource("LabelSettings_i073q")
+horizontal_alignment = 1
+
+[node name="P1Intructions" type="Label" parent="P1Vbox" unique_id=1365348385]
+layout_mode = 2
+text = "Controls:
+WASD to move
+Q to block
+E to attack"
+label_settings = SubResource("LabelSettings_75cri")
+horizontal_alignment = 1
+
+[node name="P2Vbox" type="VBoxContainer" parent="." unique_id=1249710109]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -471.0
+offset_right = -155.0
+offset_bottom = 372.0
+grow_horizontal = 0
+
+[node name="P1" type="Label" parent="P2Vbox" unique_id=739075045]
+layout_mode = 2
+text = "Player Two"
+label_settings = SubResource("LabelSettings_i073q")
+horizontal_alignment = 1
+
+[node name="P1Intructions" type="Label" parent="P2Vbox" unique_id=113297151]
+layout_mode = 2
+text = "Controls:
+IJKL to move
+U to block
+O to attack"
+label_settings = SubResource("LabelSettings_75cri")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=2080229637]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -158.5
+offset_top = 101.0
+offset_right = 158.5
+offset_bottom = 178.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Understand?"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

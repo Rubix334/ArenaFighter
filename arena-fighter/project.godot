@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Arena Fighter"
-run/main_scene="res://Arena.tscn"
+run/main_scene="uid://bcju6w50ubwxx"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

@@ -1,5 +1,10 @@
 [gd_scene format=3 uid="uid://bcju6w50ubwxx"]
 
+[ext_resource type="Script" uid="uid://bm5co6mafjaa5" path="res://title.gd" id="1_c0dwi"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ax32a"]
+font_size = 100
+
 [node name="Control" type="Control" unique_id=756707391]
 layout_mode = 3
 anchors_preset = 15
@@ -7,10 +12,38 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_c0dwi")
 
-[node name="Label3D" type="Label3D" parent="." unique_id=1759530698]
+[node name="Label" type="Label" parent="." unique_id=1732916160]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -246.0
+offset_top = -176.0
+offset_right = 246.0
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Arena Sim"
-font_size = 39
+label_settings = SubResource("LabelSettings_ax32a")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=817257229]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5143824)
+[node name="Button" type="Button" parent="." unique_id=380935627]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -25.0
+offset_right = 100.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Play!"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

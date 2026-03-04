@@ -17,7 +17,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	pass 
+	pass
 
 func _on_player_1_attack() -> void:
 	var damage = player1.deal_damage()
@@ -28,6 +28,11 @@ func _on_player_1_attack() -> void:
 		player2.health -= damage
 		player2.animation_player.play("took_damage")
 		print(player2.name + " Health Left: "+ str(player2.health))
+		if player1.position.x <= player2.position.x:
+			player2.velocity.x += 200
+		elif player1.position.x > player2.position.x:
+			player2.velocity.x -= 200
+		player2.move_and_slide()
 
 func _on_attackzone_body_entered(body: Node3D) -> void:
 	print(body.name)
@@ -52,6 +57,7 @@ func _on_player_2_attack() -> void:
 		player1.health -= damage
 		player1.animation_player.play("took_damage")
 		print(player1.name + " Health Left: "+ str(player1.health))
+		
 
 func _on_attackzone2_body_entered(body: Node3D) -> void:
 	print(body.name)
