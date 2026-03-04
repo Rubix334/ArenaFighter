@@ -57,6 +57,11 @@ func _on_player_2_attack() -> void:
 		player1.health -= damage
 		player1.animation_player.play("took_damage")
 		print(player1.name + " Health Left: "+ str(player1.health))
+		if player2.position.x <= player1.position.x:
+			player1.velocity.x += 200
+		elif player2.position.x > player1.position.x:
+			player1.velocity.x -= 200
+		player1.move_and_slide()
 		
 
 func _on_attackzone2_body_entered(body: Node3D) -> void:

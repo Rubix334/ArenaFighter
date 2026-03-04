@@ -22,6 +22,7 @@ var holdTime := 0.0
 
 @export var start_pos = null
 var attacktimer = 1
+
 func _physics_process(delta: float) -> void:	
 	# Add the gravity.
 	if not is_on_floor():
@@ -99,6 +100,7 @@ func deal_damage() -> float:
 func died() -> void:
 	lives -= 1
 	health = 100
+	
 	
 	global_position = start_pos
 	
