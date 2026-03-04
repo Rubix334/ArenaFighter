@@ -78,7 +78,6 @@ func _process(delta: float) -> void:
 		attack.emit()
 		attacktimer -= 0.1
 		print(name + " damage dealt: " + str(deal_damage()))
-		print(name + " Health: " + str(health))
 		holdTime = 0.0
 	
 	if attacktimer < 1:
@@ -102,3 +101,4 @@ func died() -> void:
 	health = 100
 	
 	global_position = start_pos
+	
